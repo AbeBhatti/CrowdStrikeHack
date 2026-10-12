@@ -3,6 +3,27 @@ rate_limit_seconds: 300
 approval_token_ttl_seconds: 600
 pin_max_attempts: 3
 
+# Kokoro local TTS. demo | normal. Switchable at runtime via API / on-call UI.
+voice_mode: demo
+kokoro:
+  normal_voice: af_heart
+  demo_voice: af_bella
+  demo_pitch_semitones: 5
+  demo_tempo: 1.10
+  generation_timeout_seconds: 3.0
+  cache_dir: .cache/tts
+
+message_template_normal: >
+  {summary} I {actions_done}. Based on past attacks, {next_stage} is likely
+  within {window_low} to {window_high} minutes. Press 1 to {option_one}.
+  Press 2 to keep watching. Press 3 to call me back in 10 minutes.
+
+message_template_demo: >
+  Ooh, {summary} I already {actions_done}. Based on past attacks, {next_stage}
+  is likely in {window_low} to {window_high} minutes. Press 1 to {option_one}.
+  Press 2 to keep watching. Press 3 to call you back in 10 minutes.
+
+# Back-compat alias used until templates are split in code.
 message_template: >
   {summary} I {actions_done}. Based on past attacks, {next_stage} is likely
   within {window_low} to {window_high} minutes. Press 1 to {option_one}.

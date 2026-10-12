@@ -20,7 +20,7 @@ noise:
 
 classifier:
   # Selected after CV comparison of lookup | rules | logistic (see reports/method_comparison.md).
-  method: rules
+  method: lookup
   dirb_keep_fraction: 0.02
   wpscan_keep_fraction: 0.1
   detection_tolerance_minutes: 2.0
