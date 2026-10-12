@@ -1,0 +1,40 @@
+decoy_types:
+  cracking:
+    kind: http_login
+    port_key: http
+    plant_honeytoken: true
+    target_role: webserver
+  webshell:
+    kind: http_login
+    port_key: http
+    plant_honeytoken: true
+    target_role: webserver
+  reverse_shell:
+    kind: ssh
+    port_key: ssh
+    plant_honeytoken: true
+    target_role: webserver
+  privilege_escalation:
+    kind: ssh
+    port_key: ssh
+    plant_honeytoken: true
+    target_role: intranet_server
+  exfil:
+    kind: canary_dns
+    port_key: dns
+    plant_honeytoken: false
+    target_role: dns
+  lateral_share:
+    kind: fileshare
+    port_key: fileshare
+    plant_honeytoken: true
+    target_role: internal_share
+
+bind_host: "127.0.0.1"
+ports:
+  ssh: 2222
+  http: 8081
+  dns: 5354
+  fileshare: 8082
+max_active_per_role: 2
+expire_replay_minutes: 60

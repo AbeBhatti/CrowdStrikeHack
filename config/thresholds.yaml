@@ -1,0 +1,79 @@
+random_seed: 42
+
+data:
+  training_scenarios:
+    - fox
+    - harrison
+    - shaw
+    - wardbeck
+    - wheeler
+    - wilson
+  held_out_scenarios:
+    - russellmitchell
+    - santos
+  demo_scenario: russellmitchell
+
+noise:
+  periodic_tolerance_seconds: 1.5
+  baseline_burst_z: 3.0
+  learning_period_minutes: 60
+
+classifier:
+  # Selected after CV comparison of lookup | rules | logistic (see reports/method_comparison.md).
+  method: rules
+  dirb_keep_fraction: 0.02
+  wpscan_keep_fraction: 0.1
+  detection_tolerance_minutes: 2.0
+  relevant_threshold: 0.5
+  rules:
+    # Tuned only on training CV folds; held-out never used for tuning.
+    distinct_roles_weight: 0.15
+    distinct_detectors_weight: 0.15
+    rarity_weight: 0.2
+    burst_weight: 0.2
+    noise_penalty: 0.25
+    prior_stage_weight: 0.2
+    relevant_cutoff: 0.45
+
+incidents:
+  proximity_seconds: 900
+  min_alerts: 1
+
+forecast:
+  default_window_minutes: [25, 45]
+
+router:
+  escalate_confidence_below: 0.45
+  escalate_blast_above: 0.8
+  playbook_match_above: 0.7
+  playbook_confidence_above: 0.65
+
+sandbox:
+  min_catch_scenarios: 5
+  max_fp_per_day: 5.0
+  max_attempts: 3
+
+decoys:
+  max_active_per_role: 2
+  expire_replay_minutes: 60
+  bind_host: "127.0.0.1"
+  ports:
+    ssh: 2222
+    http: 8081
+    dns: 5354
+    fileshare: 8082
+
+oncall:
+  max_call_words: 60
+  rate_limit_seconds: 300
+  approval_token_ttl_seconds: 600
+  pin_max_attempts: 3
+
+guard:
+  max_untrusted_field_chars: 200
+  cross_check_required: true
+
+llm:
+  temperature: 0
+  keep_alive: "30m"
+  cache_dir: "llm_cache"

@@ -1,0 +1,6 @@
+primary: llama3.2:1b
+cross_check:
+  - qwen2.5:1.5b
+  - gemma2:2b
+temperature: 0
+keep_alive: 30m

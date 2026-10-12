@@ -1,0 +1,53 @@
+# Stage playbooks. Exfil deliberately omitted so sandbox fires in the demo.
+stages:
+  recon:
+    actions:
+      - action: notify_human
+        reversible: true
+      - action: deploy_decoy
+        reversible: true
+  web_scan:
+    actions:
+      - action: notify_human
+        reversible: true
+      - action: block_ip
+        reversible: true
+  webshell:
+    actions:
+      - action: block_ip
+        reversible: true
+      - action: deploy_detection_rule
+        reversible: true
+      - action: deploy_decoy
+        reversible: true
+      - action: isolate_host
+        reversible: false
+  cracking:
+    actions:
+      - action: block_ip
+        reversible: true
+      - action: notify_human
+        reversible: true
+  reverse_shell:
+    actions:
+      - action: block_ip
+        reversible: true
+      - action: isolate_host
+        reversible: false
+      - action: deploy_decoy
+        reversible: true
+  privilege_escalation:
+    actions:
+      - action: isolate_host
+        reversible: false
+      - action: block_ip
+        reversible: true
+      - action: notify_human
+        reversible: true
+  service_stop:
+    actions:
+      - action: notify_human
+        reversible: true
+      - action: request_approval
+        reversible: true
+  # exfil: intentionally no playbook (demo choice for sandbox branch)

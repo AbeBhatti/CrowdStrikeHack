@@ -1,0 +1,61 @@
+# Secrets and local env
+.env
+.env.local
+*.pem
+credentials/
+mock_credentials.json
+service_account.json
+
+# Data and model artifacts
+data/
+models/
+*.parquet
+*.pkl
+*.joblib
+*.lgb
+*.bin
+*.gguf
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+dist/
+build/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+*.log
+
+# LLM cache
+.cache/
+llm_cache/
+
+# Node / frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# OS / IDE
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*~
+
+# Reports generated at runtime (keep committed templates)
+# Keep reports/*.md that we author; ignore heavy dumps
+reports/*.json
+reports/*.csv
+reports/tmp/
+
+# Ollama / local
+.tmp/
+tmp/
+temp_alert_data_set/

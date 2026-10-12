@@ -1,0 +1,38 @@
+# Map scenario-specific host names to stable roles.
+# Keys are lowercase substrings matched against host names.
+
+# Longer / more specific patterns win. Exact role names included.
+role_patterns:
+  mail: ["davey_mail", "morris_mail", "lane_mail", "smith_mail", "_mail", "mail"]
+  webserver: ["webserver", "wordpress", "www", "_web", "wp_"]
+  intranet_server: ["intranet_server", "intranet", "_intra"]
+  inet_firewall: ["inet-firewall", "inet_firewall", "firewall", "fw_"]
+  vpn: ["vpn", "_vpn"]
+  internal_share: ["internal_share", "cloud_share", "fileserver", "file_share", "samba", "nfs", "share"]
+  dns: ["inet-dns", "_dns", "nameserver", "dns"]
+  database: ["_db", "database", "mysql", "postgres"]
+  domain_controller: ["dc_", "domain", "ad_"]
+  monitoring: ["monitoring"]
+  workstation: ["ws_", "workstation", "client", "desktop"]
+  attacker: ["attacker", "ext"]
+
+# Criticality used for blast_radius scoring (0 to 1).
+role_criticality:
+  inet_firewall: 0.95
+  domain_controller: 0.95
+  vpn: 0.9
+  database: 0.85
+  mail: 0.8
+  webserver: 0.75
+  intranet_server: 0.7
+  internal_share: 0.65
+  dns: 0.7
+  workstation: 0.4
+  monitoring: 0.55
+  attacker: 0.1
+  unknown: 0.5
+
+protected_infrastructure:
+  - inet_firewall
+  - domain_controller
+  - vpn

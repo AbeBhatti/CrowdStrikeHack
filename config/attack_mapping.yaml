@@ -1,0 +1,35 @@
+# Fixed MITRE ATT&CK mapping for the 75 alert type codes (short).
+# Models may only pick IDs from this file.
+
+default_technique: T1078
+
+by_short_prefix:
+  W-Acc: T1190          # web access / exploit public-facing
+  W-Sys: T1082          # system information discovery
+  W-Aut: T1110          # brute force / auth
+  W-Fil: T1005          # data from local system
+  W-Net: T1046          # network service discovery
+  W-Cmd: T1059          # command and scripting
+  W-Agt: T1071          # application layer protocol
+  S-Tls: T1573          # encrypted channel
+  S-Dns: T1071.004      # DNS
+  S-Htt: T1071.001      # web protocols
+  S-Ssh: T1021.004      # SSH
+  S-Smb: T1021.002      # SMB/Windows admin shares
+  S-Icm: T1046          # network discovery via ICMP
+  A-New: T1087          # account / entity discovery (AMiner novelty)
+  A-Sta: T1078          # statistical anomaly
+
+by_stage:
+  recon: [T1046, T1595]
+  web_scan: [T1595.002, T1190]
+  webshell: [T1505.003]
+  cracking: [T1110]
+  reverse_shell: [T1059, T1071]
+  privilege_escalation: [T1548, T1068]
+  service_stop: [T1489]
+  exfil: [T1048, T1071.004]
+  none: []
+
+# Explicit overrides for known high-signal short codes (filled as data is inspected).
+by_short: {}
