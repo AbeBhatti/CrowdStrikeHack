@@ -116,6 +116,13 @@ else
   warn "cloudflared missing (needed for Twilio webhooks). Install: brew install cloudflared"
 fi
 
+# espeak-ng (Kokoro phonemizer backend)
+if command -v espeak-ng >/dev/null 2>&1 || brew list espeak-ng >/dev/null 2>&1; then
+  ok "espeak-ng present"
+else
+  warn "espeak-ng missing (Kokoro). Install: brew install espeak-ng"
+fi
+
 echo
 if [[ "${FAIL}" -ne 0 ]]; then
   echo "Environment check FAILED. Fix the items above and re-run."
@@ -123,3 +130,4 @@ if [[ "${FAIL}" -ne 0 ]]; then
 fi
 echo "Environment check PASSED."
 exit 0
+

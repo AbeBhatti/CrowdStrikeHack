@@ -27,6 +27,7 @@ dependencies = [
   "twilio>=9.3.0",
   "websockets>=13.0",
   "sse-starlette>=2.1.0",
+  "soundfile>=0.14.0",
 ]
 
 [project.optional-dependencies]
